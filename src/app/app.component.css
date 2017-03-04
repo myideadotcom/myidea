@@ -1,0 +1,27 @@
+body, html {
+  width: 100%;
+  padding:10px;
+}
+
+.logoContainer {
+  margin-top: 0;
+  height: 200px;
+  width: 100%;
+
+}
+
+.logoContainer {
+  border-bottom: 1px solid;
+}
+
+.innerLogoContainer {
+  background-image: url("http://i.imgur.com/qRFo5wO.png");
+  background-repeat: no-repeat;
+  height: 200px;
+  width:573px;
+  margin: 0 auto ;
+}
+
+.form-control {
+  width: 90%;
+}

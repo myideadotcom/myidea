@@ -1,3 +1,21 @@
-<h1>
-  {{title}}
-</h1>
+<div class="row show-grid">
+  <div class="col-md-12">
+    <div class="logoContainer"><div class="innerLogoContainer"></div></div>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#" routerLink="/home" routerLinkActive="active">Główna</a></li>
+          <li *ngIf="authInfo?.isLoggedIn()"><a href="#" routerLink="/ideas" routerLinkActive="active">Lista pomysłów</a></li>
+          <li *ngIf="authInfo?.isLoggedIn()"><a href="#" routerLink="/add-idea" routerLinkActive="active">Dodaj pomysł</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li *ngIf="!authInfo?.isLoggedIn()"><a href="#" routerLink="/register" routerLinkActive="active" ><span class="glyphicon glyphicon-user" ></span> Rejestracja</a></li>
+          <li *ngIf="!authInfo?.isLoggedIn()"><a href="#" routerLink="/login" routerLinkActive="active"><span class="glyphicon glyphicon-log-in" ></span> Zaloguj się</a></li>
+          <li *ngIf="authInfo?.isLoggedIn()"><a href="#" (click)="logout()" routerLink="/home" routerLinkActive="active"><span class="glyphicon glyphicon-log-in" ></span> Wyloguj się</a></li>
+          <li><a routerLink="/profile" routerLinkActive="active"><span class="glyphicon glyphicon-log-in" ></span>Profil</a></li>
+        </ul>
+      </div>
+    </nav>
+    <router-outlet> </router-outlet>
+  </div>
+</div>
