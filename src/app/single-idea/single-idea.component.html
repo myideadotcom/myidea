@@ -2,4 +2,14 @@
   {{idea.title}}
   {{idea.description}}
 </p>
-<div></div>
+<div class="form-group">
+  <form [formGroup]="commentForm">
+  <label for="comment">Comment:</label>
+  <textarea class="form-control" rows="5" id="comment" formControlName="comment"></textarea>
+    <button type="button" (click)="addComment()">Dodaj</button>
+  </form>
+</div>
+<ul>
+  <li>Comment 1</li>
+  <li>Comment 2</li>
+</ul>

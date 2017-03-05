@@ -39,7 +39,8 @@ export class RegisterComponent {
         this.profiles.push({
           userId: this.uid,
           description: 'default',
-          avatarUrl: 'https://cdn1.iconfinder.com/data/icons/mix-color-4/502/Untitled-1-512.png'
+          avatarUrl: 'https://cdn1.iconfinder.com/data/icons/mix-color-4/502/Untitled-1-512.png',
+          email: val.email
         });
       },
       err => alert (err)
