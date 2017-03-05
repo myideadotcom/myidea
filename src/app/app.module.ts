@@ -13,7 +13,9 @@ import { SingleIdeaComponent } from './single-idea/single-idea.component';
 import { IdeasListComponent } from './ideas-list/ideas-list.component';
 import { ProfileComponent } from './profile/profile.component';
 import {AppRouteModule} from "./app-route/app-route.module";
-import {AuthService} from "./shared/security/auth.service";
+import {AuthService} from "./security/auth.service";
+import {IdeasService} from "./model/ideas.service";
+import {ProfilesService} from "./model/profiles.service";
 
 var config = {
   apiKey: "AIzaSyBqMBdbnw8z3SEm6UYFVmC_xpZkHUXqtqU",
@@ -37,7 +39,7 @@ export const authConfig = {
     LoginComponent,
     SingleIdeaComponent,
     IdeasListComponent,
-    ProfileComponent
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,7 @@ export const authConfig = {
     AppRouteModule,
     AngularFireModule.initializeApp(config, authConfig)
   ],
-  providers: [AuthService],
+  providers: [AuthService, IdeasService, ProfilesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
