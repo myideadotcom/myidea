@@ -10,6 +10,6 @@
   </form>
 </div>
 <ul>
-  <li>Comment 1</li>
-  <li>Comment 2</li>
+  <li *ngFor="let comment of existingComments">{{comment.username}} {{comment.comment}}</li>
+
 </ul>

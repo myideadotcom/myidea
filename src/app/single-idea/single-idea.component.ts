@@ -6,6 +6,8 @@ import {FirebaseListObservable, AngularFire} from "angularfire2";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ProfilesService} from "../model/profiles.service";
 import {profile} from "../home/home.component"
+import {CommentsService} from "../model/comments.service";
+import {Comment} from "../model/Comment";
 
 @Component({
   selector: 'app-single-idea',
@@ -18,26 +20,22 @@ export class SingleIdeaComponent {
   idea: Idea;
   comments: FirebaseListObservable<any>;
   commentForm: FormGroup;
-  profile: ProfilesService
+  profile: ProfilesService;
+  existingComments : Comment[];
 
   constructor(private ideasServices: IdeasService, private route: ActivatedRoute, private router: Router,
               private af: AngularFire,
               private fb: FormBuilder,
-              private profileService: ProfilesService) {
+              private cs : CommentsService) {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id'];
-      console.log(this.id);
     })
 
     this.ideasServices.getIdeaById(this.id).subscribe(
       idea => this.idea = idea
     );
-    if(this.idea == null){
-      console.log('null');
-    }else{
-      console.log(this.idea);
-    }
     this.comments = this.af.database.list('comments');
+    this.cs.getIdeaComments(this.idea.$key).subscribe(result => this.existingComments = result);
     this.commentForm = this.fb.group({
       comment: ['',Validators.required]
     });
@@ -46,7 +44,8 @@ export class SingleIdeaComponent {
   addComment() {
     var he = this.comments.push({
         comment: this.commentForm.value.comment,
-        username: profile.email
+        username: profile.email,
+        ideaId: this.idea.$key
     });
     this.commentForm.reset();
     alert('Comment submitted');

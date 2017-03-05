@@ -16,6 +16,7 @@ import {AppRouteModule} from "./app-route/app-route.module";
 import {AuthService} from "./security/auth.service";
 import {IdeasService} from "./model/ideas.service";
 import {ProfilesService} from "./model/profiles.service";
+import {CommentsService} from "./model/comments.service";
 
 var config = {
   apiKey: "AIzaSyBqMBdbnw8z3SEm6UYFVmC_xpZkHUXqtqU",
@@ -50,7 +51,7 @@ export const authConfig = {
     AppRouteModule,
     AngularFireModule.initializeApp(config, authConfig)
   ],
-  providers: [AuthService, IdeasService, ProfilesService],
+  providers: [AuthService, IdeasService, ProfilesService, CommentsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
