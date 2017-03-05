@@ -1,1 +1,1 @@
-working: npm run heroku
+worker: npm run heroku
