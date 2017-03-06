@@ -48,6 +48,6 @@ export class SingleIdeaComponent {
         ideaId: this.idea.$key
     });
     this.commentForm.reset();
-    alert('Comment submitted');
+    alert(' Comment submitted ');
   }
 }
