@@ -14,7 +14,12 @@ export class HomeComponent implements OnInit {
 
   constructor(private  af: AngularFire, private pf: ProfilesService) {
     var uid;
-    this.af.auth.subscribe(auth => uid = auth.uid);
+    this.af.auth.subscribe(
+      auth => {
+        if(auth != null) {
+          uid = auth.uid
+        }
+        });
     if(uid != null) {
       this.pf.getUserByUserId(uid).subscribe(
         result => profile = result
