@@ -108,7 +108,11 @@ var HomeComponent = (function () {
         this.af = af;
         this.pf = pf;
         var uid;
-        this.af.auth.subscribe(function (auth) { return uid = auth.uid; });
+        this.af.auth.subscribe(function (auth) {
+            if (auth != null) {
+                uid = auth.uid;
+            }
+        });
         if (uid != null) {
             this.pf.getUserByUserId(uid).subscribe(function (result) { return profile = result; });
         }
@@ -588,7 +592,7 @@ var SingleIdeaComponent = (function () {
             ideaId: this.idea.$key
         });
         this.commentForm.reset();
-        alert('Comment submitted');
+        alert(' Comment submitted ');
     };
     SingleIdeaComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["G" /* Component */])({
