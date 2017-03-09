@@ -3,6 +3,7 @@ import {AngularFire, FirebaseListObservable} from "angularfire2";
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 
+
 @Component({
   selector: 'app-add-idea',
   templateUrl: './add-idea.component.html',
@@ -13,12 +14,13 @@ export class AddIdeaComponent  {
   form: FormGroup;
   ideas: FirebaseListObservable<any>;
 
-  constructor(private fb:FormBuilder,  af: AngularFire, private router: Router) {
+  constructor(private fb:FormBuilder, private af: AngularFire, private router: Router) {
     this.form = this.fb.group({
       title: ['',Validators.required],
       description: ['',Validators.required]
     });
-    this.ideas = af.database.list('ideas');
+    this.ideas = this.af.database.list('ideas');
+
   }
 
   addIdea(){

@@ -9,7 +9,7 @@ export class AuthService {
 
   static UNKNOWN_USER = new AuthInfo(null);
   authInfo$: BehaviorSubject<AuthInfo> = new BehaviorSubject<AuthInfo>(AuthService.UNKNOWN_USER);
-
+  uuid: string;
 
   constructor(private auth: FirebaseAuth, private router: Router, private af: AngularFire) {
   }
@@ -45,8 +45,9 @@ export class AuthService {
   }
 
   logout() {
+    this.router.navigate(['/home'])
     this.auth.logout();
     this.authInfo$.next(AuthService.UNKNOWN_USER);
-    this.router.navigateByUrl('/home');
+    ;
   }
 }

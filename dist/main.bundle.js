@@ -13,7 +13,7 @@ module.exports = __webpack_require__(646);
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs__ = __webpack_require__(979);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__auth_info__ = __webpack_require__(769);
@@ -65,9 +65,10 @@ var AuthService = (function () {
         return subject.asObservable();
     };
     AuthService.prototype.logout = function () {
+        this.router.navigate(['/home']);
         this.auth.logout();
         this.authInfo$.next(AuthService.UNKNOWN_USER);
-        this.router.navigateByUrl('/home');
+        ;
     };
     AuthService.UNKNOWN_USER = new __WEBPACK_IMPORTED_MODULE_3__auth_info__["a" /* AuthInfo */](null);
     AuthService = __decorate([
@@ -86,7 +87,7 @@ var AuthService = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_profiles_service__ = __webpack_require__(267);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return profile; });
 /* harmony export (binding) */ __webpack_require__.d(exports, "b", function() { return HomeComponent; });
@@ -139,7 +140,7 @@ var HomeComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Idea__ = __webpack_require__(767);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return IdeasService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -180,7 +181,7 @@ var IdeasService = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Profile__ = __webpack_require__(768);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ProfilesService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -224,7 +225,7 @@ var ProfilesService = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(84);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AddIdeaComponent; });
@@ -244,12 +245,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var AddIdeaComponent = (function () {
     function AddIdeaComponent(fb, af, router) {
         this.fb = fb;
+        this.af = af;
         this.router = router;
         this.form = this.fb.group({
             title: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["d" /* Validators */].required],
             description: ['', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["d" /* Validators */].required]
         });
-        this.ideas = af.database.list('ideas');
+        this.ideas = this.af.database.list('ideas');
     }
     AddIdeaComponent.prototype.addIdea = function () {
         this.ideas.push({
@@ -299,9 +301,12 @@ var IdeasListComponent = (function () {
         this.route = route;
         this.router = router;
     }
+    IdeasListComponent.prototype.ngOnDestroy = function () {
+        this.subscription.unsubscribe();
+    };
     IdeasListComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.is.getAllIdeas().subscribe(function (ideas) { return _this.ideas = ideas; });
+        this.subscription = this.is.getAllIdeas().subscribe(function (ideas) { return _this.ideas = ideas; });
     };
     IdeasListComponent.prototype.ideaDetails = function (idea) {
         console.log("wejscie");
@@ -385,7 +390,7 @@ var LoginComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Comment__ = __webpack_require__(766);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return CommentsService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -429,7 +434,7 @@ var CommentsService = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_profiles_service__ = __webpack_require__(267);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2__ = __webpack_require__(40);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ProfileComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -440,11 +445,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
 
 
 
 var ProfileComponent = (function () {
-    function ProfileComponent(profileService, af) {
+    function ProfileComponent(firebaseApp, profileService, af) {
         var _this = this;
         this.profileService = profileService;
         this.af = af;
@@ -452,14 +461,24 @@ var ProfileComponent = (function () {
         this.profileService.getUserByUserId(this.uid).subscribe(function (result) {
             _this.profile = result;
         });
+        this.storage = firebaseApp.storage();
     }
+    ProfileComponent.prototype.onChange = function (event) {
+        var eventObj = event;
+        var target = eventObj.target;
+        var files = target.files;
+        this.picture = files[0];
+        console.log(this.picture);
+        this.storage.ref().child('avatar.png').put(this.picture);
+    };
     ProfileComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["G" /* Component */])({
             selector: 'app-profile',
             template: __webpack_require__(975),
             styles: [__webpack_require__(967)]
-        }), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__model_profiles_service__["a" /* ProfilesService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__model_profiles_service__["a" /* ProfilesService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_angularfire2__["b" /* AngularFire */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2_angularfire2__["b" /* AngularFire */]) === 'function' && _b) || Object])
+        }),
+        __param(0, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["y" /* Inject */])(__WEBPACK_IMPORTED_MODULE_2_angularfire2__["d" /* FirebaseApp */])), 
+        __metadata('design:paramtypes', [Object, (typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__model_profiles_service__["a" /* ProfilesService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__model_profiles_service__["a" /* ProfilesService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_angularfire2__["b" /* AngularFire */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_2_angularfire2__["b" /* AngularFire */]) === 'function' && _b) || Object])
     ], ProfileComponent);
     return ProfileComponent;
     var _a, _b;
@@ -476,7 +495,7 @@ var ProfileComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__security_auth_service__ = __webpack_require__(183);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__(84);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angularfire2__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angularfire2__ = __webpack_require__(40);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return RegisterComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -545,7 +564,7 @@ var RegisterComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_ideas_service__ = __webpack_require__(266);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__home_home_component__ = __webpack_require__(265);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__model_comments_service__ = __webpack_require__(408);
@@ -757,7 +776,7 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(729);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_bootstrap_ng2_bootstrap__ = __webpack_require__(946);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angularfire2__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angularfire2__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__(764);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__home_home_component__ = __webpack_require__(265);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__register_register_component__ = __webpack_require__(410);
@@ -809,8 +828,8 @@ var config = {
     messagingSenderId: "1012947482588"
 };
 var authConfig = {
-    provder: __WEBPACK_IMPORTED_MODULE_5_angularfire2__["d" /* AuthProviders */].Password,
-    method: __WEBPACK_IMPORTED_MODULE_5_angularfire2__["e" /* AuthMethods */].Password
+    provder: __WEBPACK_IMPORTED_MODULE_5_angularfire2__["e" /* AuthProviders */].Password,
+    method: __WEBPACK_IMPORTED_MODULE_5_angularfire2__["f" /* AuthMethods */].Password
 };
 var AppModule = (function () {
     function AppModule() {
@@ -834,7 +853,7 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_4_ng2_bootstrap_ng2_bootstrap__["a" /* Ng2BootstrapModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_forms__["f" /* ReactiveFormsModule */],
                 __WEBPACK_IMPORTED_MODULE_14__app_route_app_route_module__["a" /* AppRouteModule */],
-                __WEBPACK_IMPORTED_MODULE_5_angularfire2__["f" /* AngularFireModule */].initializeApp(config, authConfig)
+                __WEBPACK_IMPORTED_MODULE_5_angularfire2__["g" /* AngularFireModule */].initializeApp(config, authConfig)
             ],
             providers: [__WEBPACK_IMPORTED_MODULE_15__security_auth_service__["a" /* AuthService */], __WEBPACK_IMPORTED_MODULE_16__model_ideas_service__["a" /* IdeasService */], __WEBPACK_IMPORTED_MODULE_17__model_profiles_service__["a" /* ProfilesService */], __WEBPACK_IMPORTED_MODULE_18__model_comments_service__["a" /* CommentsService */]],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */]]
@@ -1347,7 +1366,7 @@ module.exports = "<div id=\"logowanie\">\n  <h1>Logowanie:</h1> <br/>\n  <form c
 /***/ 975:
 /***/ function(module, exports) {
 
-module.exports = "<div *ngIf=\"profile\">\n  <h1>Dane</h1>\n  <h2>{{profile.description}}</h2>\n  <img src=\"{{profile.avatarUrl}}\" alt=\"\">\n\n</div>\n"
+module.exports = "<div *ngIf=\"profile\">\n  <h1>Dane</h1>\n  <h2>{{profile.description}}</h2>\n  <img src=\"{{profile.avatarUrl}}\" alt=\"\">\n\n</div>\n<div>\n  <input name=\"file\" type=\"file\" (change)=\"onChange($event)\"/>\n</div>\n"
 
 /***/ },
 
