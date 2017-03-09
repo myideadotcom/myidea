@@ -454,15 +454,20 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 
 var ProfileComponent = (function () {
     function ProfileComponent(firebaseApp, profileService, af) {
-        var _this = this;
         this.profileService = profileService;
         this.af = af;
-        this.af.auth.subscribe(function (auth) { return _this.uid = auth.uid; });
+        this.storage = firebaseApp.storage();
+    }
+    ProfileComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.angularFireSubscription = this.af.auth.subscribe(function (auth) { return _this.uid = auth.uid; });
         this.profileService.getUserByUserId(this.uid).subscribe(function (result) {
             _this.profile = result;
         });
-        this.storage = firebaseApp.storage();
-    }
+    };
+    ProfileComponent.prototype.ngOnDestroy = function () {
+        this.angularFireSubscription.unsubscribe();
+    };
     ProfileComponent.prototype.onChange = function (event) {
         var eventObj = event;
         var target = eventObj.target;
