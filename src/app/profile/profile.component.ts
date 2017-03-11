@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   angularFireSubscription : Subscription;
 
   constructor(@Inject(FirebaseApp) firebaseApp: any, private profileService: ProfilesService, private af: AngularFire) {
-    this.storage = firebaseApp.storage()
+    this.storage = firebaseApp.storage();
   }
 
   ngOnInit(): void {
