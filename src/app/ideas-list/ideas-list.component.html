@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row-centered" *ngFor="let idea of ideas">
 
-    <div class="col-xs-4 col-centered" (click)="ideaDetails(idea)">
+    <div class="col-xs-4 col-centered" (click)="ideaDetails(idea.$key)">
       <div class="item"><div class="content">{{idea.title}}</div></div>
     </div>
 
 
-    <div class="col-xs-4 col-centered" (click)="ideaDetails(idea)">
+    <div class="col-xs-4 col-centered" (click)="ideaDetails(idea.$key)">
       <div class="item"><div class="content">{{idea.description | slice:0:20}}</div></div>
     </div>
 

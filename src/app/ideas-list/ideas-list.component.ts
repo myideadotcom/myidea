@@ -28,9 +28,9 @@ export class IdeasListComponent implements OnInit, OnDestroy{
     )
   }
 
-  ideaDetails(idea:Idea){
-    console.log("wejscie");
-    this.router.navigate(['idea',idea.$key]);
+  ideaDetails(key: string){
+    console.log(key);
+    this.router.navigate(['idea',key]);
 
   }
 
