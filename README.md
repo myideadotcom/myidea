@@ -13,11 +13,11 @@ https://drive.google.com/open?id=1UU_G_xj15kNJ3LseRQ_IMp1rgmrLu-teog6ihU8BCtc
 
 **Podział zadań:**
 
-Sebastian Gozdur : Webdeveloper
+Sebastian Gozdur : Angular 2 Developer
 
-Bartłomiej Gryglicki: Webdesigner
+Bartłomiej Gryglicki: Tester
 
-Arek Przybyś: Administrator bazy daych
+Arek Przybyś: Webmaster
 
 Daniel Mikołajczuk: Webmaster
 
