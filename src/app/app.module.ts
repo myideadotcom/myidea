@@ -17,6 +17,8 @@ import {AuthService} from "./security/auth.service";
 import {IdeasService} from "./model/ideas.service";
 import {ProfilesService} from "./model/profiles.service";
 import {CommentsService} from "./model/comments.service";
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import {StorageService} from "./model/storage.service";
 
 var config = {
   apiKey: "AIzaSyBqMBdbnw8z3SEm6UYFVmC_xpZkHUXqtqU",
@@ -41,6 +43,7 @@ export const authConfig = {
     SingleIdeaComponent,
     IdeasListComponent,
     ProfileComponent,
+    EditProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,7 @@ export const authConfig = {
     AppRouteModule,
     AngularFireModule.initializeApp(config, authConfig)
   ],
-  providers: [AuthService, IdeasService, ProfilesService, CommentsService],
+  providers: [AuthService, IdeasService, ProfilesService, CommentsService, StorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

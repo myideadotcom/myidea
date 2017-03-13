@@ -3,12 +3,14 @@ import {Router, ActivatedRoute, Params} from "@angular/router";
 import {IdeasService} from "../model/ideas.service";
 import {Idea} from "../model/Idea";
 import {FirebaseListObservable, AngularFire} from "angularfire2";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators } from "@angular/forms";
 import {ProfilesService} from "../model/profiles.service";
 import {profile} from "../home/home.component"
 import {CommentsService} from "../model/comments.service";
 import {Comment} from "../model/Comment";
 import {Subscription} from "rxjs";
+
+
 
 @Component({
   selector: 'app-single-idea',

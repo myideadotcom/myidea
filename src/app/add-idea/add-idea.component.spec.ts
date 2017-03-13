@@ -24,5 +24,5 @@ describe('AddIdeaComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
+});
 });

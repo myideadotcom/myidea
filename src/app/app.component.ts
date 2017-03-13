@@ -10,6 +10,7 @@ import {AuthService} from "./security/auth.service";
 export class AppComponent implements OnInit {
 
   authInfo: AuthInfo;
+  activeButton : number = 1;
 
   constructor(private authService: AuthService) {
 
@@ -21,6 +22,10 @@ export class AppComponent implements OnInit {
 
   logout(){
     this.authService.logout();
+  }
+
+  setActiveButton(buttonNumber : number) {
+    this.activeButton = buttonNumber;
   }
 
 }
